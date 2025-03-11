@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { useAppContext } from '@/context/AppContext';
+import { useAppContext, TradeSignal } from '@/context/AppContext';
 import DashboardLayout from '@/components/layout/Dashboard';
 import Header from '@/components/layout/Header';
 import StatCard from '@/components/ui/StatCard';
@@ -61,8 +61,8 @@ const Index: React.FC = () => {
           entryPrice: 151.435,
           stopLoss: 151.635,
           takeProfit: 151.035,
-          direction: 'SELL',
-          status: 'COMPLETED',
+          direction: 'SELL' as const,
+          status: 'COMPLETED' as const,
           profit: 32.5,
         },
         {
@@ -70,8 +70,8 @@ const Index: React.FC = () => {
           entryPrice: 1.08432,
           stopLoss: 1.08332,
           takeProfit: 1.08632,
-          direction: 'BUY',
-          status: 'COMPLETED',
+          direction: 'BUY' as const,
+          status: 'COMPLETED' as const,
           profit: 18.7,
         },
         {
@@ -79,8 +79,8 @@ const Index: React.FC = () => {
           entryPrice: 187.654,
           stopLoss: 187.454,
           takeProfit: 188.054,
-          direction: 'BUY',
-          status: 'COMPLETED',
+          direction: 'BUY' as const,
+          status: 'COMPLETED' as const,
           profit: -15.2,
         },
         {
@@ -88,8 +88,8 @@ const Index: React.FC = () => {
           entryPrice: 0.65743,
           stopLoss: 0.65943,
           takeProfit: 0.65443,
-          direction: 'SELL',
-          status: 'COMPLETED',
+          direction: 'SELL' as const,
+          status: 'COMPLETED' as const,
           profit: 22.1,
         },
       ];

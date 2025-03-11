@@ -1,8 +1,7 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define types for our context
-type TradeSignal = {
+export type TradeSignal = {
   id: string;
   pair: string;
   entryPrice: number;
