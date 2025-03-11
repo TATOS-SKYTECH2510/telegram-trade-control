@@ -10,12 +10,13 @@ import {
   FileText, 
   Activity, 
   Bell,
-  Power
+  Power,
+  LogOut
 } from 'lucide-react';
 
 const Header: React.FC = () => {
   const location = useLocation();
-  const { botStatus, toggleAutoTrading, autoTrading } = useAppContext();
+  const { botStatus, toggleAutoTrading, autoTrading, logout } = useAppContext();
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -82,6 +83,15 @@ const Header: React.FC = () => {
         >
           <Power size={16} className="mr-1.5" />
           {autoTrading ? "Active" : "Inactive"}
+        </Button>
+        
+        <Button 
+          variant="outline" 
+          size="sm"
+          onClick={logout}
+        >
+          <LogOut size={16} className="mr-1.5" />
+          Logout
         </Button>
       </div>
     </header>

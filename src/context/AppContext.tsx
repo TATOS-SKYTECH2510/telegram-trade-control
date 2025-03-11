@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define types for our context
@@ -11,6 +12,12 @@ export type TradeSignal = {
   timestamp: Date;
   status: 'PENDING' | 'EXECUTED' | 'CANCELLED' | 'COMPLETED';
   profit?: number;
+};
+
+type User = {
+  id: string;
+  email: string;
+  name: string;
 };
 
 type TelegramSettings = {
@@ -60,6 +67,12 @@ type AppContextType = {
   activeTrades: TradeSignal[];
   totalTrades: number;
   winRate: number;
+  // Auth related states and methods
+  user: User | null;
+  isAuthenticated: boolean;
+  login: (email: string, password: string) => void;
+  register: (email: string, password: string, name: string) => void;
+  logout: () => void;
 };
 
 // Create the context with default values
@@ -104,6 +117,52 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     allowedPairs: DEFAULT_ALLOWED_PAIRS,
     tradingHours: DEFAULT_TRADING_HOURS,
   });
+
+  // Auth state
+  const [user, setUser] = useState<User | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check for stored auth on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('tradebolt_user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  // Auth functions
+  const login = (email: string, password: string) => {
+    // In a real app, you would validate credentials against a backend
+    // For demo purposes, we're just setting the user
+    const newUser = {
+      id: '1',
+      email,
+      name: email.split('@')[0]
+    };
+    setUser(newUser);
+    setIsAuthenticated(true);
+    localStorage.setItem('tradebolt_user', JSON.stringify(newUser));
+  };
+
+  const register = (email: string, password: string, name: string) => {
+    // In a real app, you would send this to a backend to create the user
+    // For demo purposes, we're just setting the user
+    const newUser = {
+      id: Math.random().toString(36).substring(2, 11),
+      email,
+      name
+    };
+    setUser(newUser);
+    setIsAuthenticated(true);
+    localStorage.setItem('tradebolt_user', JSON.stringify(newUser));
+  };
+
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem('tradebolt_user');
+  };
 
   // Toggle auto trading
   const toggleAutoTrading = () => {
@@ -178,6 +237,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     activeTrades,
     totalTrades,
     winRate,
+    // Auth values
+    user,
+    isAuthenticated,
+    login,
+    register,
+    logout
   };
 
   return (
