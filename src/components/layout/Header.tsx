@@ -13,6 +13,7 @@ import {
   Power,
   LogOut
 } from 'lucide-react';
+import ThemeToggle from '@/components/theme/ThemeToggle';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -61,6 +62,8 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-3">
+          <ThemeToggle />
+          
           <Button 
             variant="outline" 
             size="sm" 

@@ -9,6 +9,11 @@
   text-align: left;
 }
 
+/* Dark mode transition for body */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
   width: 6px;
@@ -27,3 +32,15 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
 }
+
+/* Dark mode enhancements for specific components */
+.dark .glass-card {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .card-hover:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+

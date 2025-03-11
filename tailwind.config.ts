@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -78,7 +77,6 @@ export default {
 					DEFAULT: 'hsl(var(--warning))',
 					foreground: 'hsl(var(--warning-foreground))'
 				},
-				// Trading-specific colors
 				profit: {
 					DEFAULT: 'hsl(var(--profit))',
 					foreground: 'hsl(var(--profit-foreground))'

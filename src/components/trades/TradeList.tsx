@@ -1,9 +1,20 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import { TradeSignal } from '@/context/AppContext';
+import { useAppContext } from '@/context/AppContext';
+
+type TradeSignal = {
+  id: string;
+  pair: string;
+  direction: 'BUY' | 'SELL';
+  entryPrice: number;
+  stopLoss?: number;
+  takeProfit?: number;
+  timestamp: Date;
+  status: 'PENDING' | 'EXECUTED' | 'CANCELLED' | 'COMPLETED';
+  profit?: number;
+};
 
 interface TradeListProps {
   trades: TradeSignal[];

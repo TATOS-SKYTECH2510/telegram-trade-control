@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider, useAppContext } from "@/context/AppContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import Index from "./pages/Index";
 import Settings from "./pages/Settings";
 import Logs from "./pages/Logs";
@@ -81,13 +82,15 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AppProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </AppProvider>
+      <ThemeProvider>
+        <AppProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </AppProvider>
+      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

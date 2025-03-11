@@ -83,7 +83,7 @@
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
@@ -127,6 +127,11 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  /* Dark mode transitions */
+  :root {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   /* Custom scrollbar */
@@ -181,6 +186,15 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Dark mode specific utilities */
+  .dark-gradient {
+    @apply dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800;
+  }
+  
+  .dark-glass {
+    @apply dark:bg-gray-900/70 dark:backdrop-blur-md dark:border dark:border-gray-800;
+  }
 }
 
 /* App-specific styles */
@@ -191,6 +205,10 @@
 .card-transition:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dark .card-transition:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .trade-positive {
