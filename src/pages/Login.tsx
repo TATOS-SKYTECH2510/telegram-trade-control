@@ -56,18 +56,18 @@ const Login = () => {
 
   return (
     <div className={cn(
-      "min-h-screen flex flex-col items-center justify-center p-4 md:p-8",
+      "min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-gradient-to-br from-background to-secondary/30",
       animationClass({ fadeIn: true })
     )}>
-      <Link to="/" className="absolute top-8 left-8 inline-flex items-center text-sm font-medium text-foreground">
+      <Link to="/" className="absolute top-8 left-8 inline-flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors">
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back to home
       </Link>
       
       <div className="w-full max-w-md space-y-8">
         <div className="flex flex-col items-center text-center space-y-2">
-          <div className="flex items-center justify-center">
-            <Activity className="h-12 w-12 text-primary" />
+          <div className="flex items-center justify-center p-3 rounded-full bg-primary/10 mb-2">
+            <Activity className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-3xl font-bold">Welcome back</h1>
           <p className="text-muted-foreground">
@@ -75,7 +75,7 @@ const Login = () => {
           </p>
         </div>
         
-        <div className="space-y-4 py-4">
+        <Card className="p-6 backdrop-blur-sm bg-card/50 border shadow-sm transition-all duration-200">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -86,6 +86,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="bg-background/50"
               />
             </div>
             <div className="space-y-2">
@@ -102,6 +103,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="bg-background/50"
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
@@ -120,12 +122,12 @@ const Login = () => {
               )}
             </Button>
           </form>
-        </div>
+        </Card>
         
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <Link to="/register" className="text-primary hover:underline">
+            <Link to="/register" className="text-primary font-medium hover:underline">
               Sign up
             </Link>
           </p>
@@ -136,3 +138,5 @@ const Login = () => {
 };
 
 export default Login;
+
+import { Card } from '@/components/ui/card';

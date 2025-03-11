@@ -34,7 +34,7 @@ const StatCard = ({
   return (
     <Card 
       className={cn(
-        "p-6 card-transition", 
+        "p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-1", 
         animationClass({ fadeIn, fadeInDelay, slideIn, scale, float, pulse }),
         className
       )}
@@ -50,7 +50,7 @@ const StatCard = ({
             <div 
               className={cn(
                 "inline-flex items-center text-xs font-medium",
-                trend.isPositive ? "text-profit" : "text-loss"
+                trend.isPositive ? "text-success" : "text-destructive"
               )}
             >
               {trend.isPositive ? "↑" : "↓"} {Math.abs(trend.value)}%
@@ -59,8 +59,8 @@ const StatCard = ({
         </div>
         
         {Icon && (
-          <div className="p-2 rounded-full bg-secondary/50">
-            <Icon size={20} className="text-muted-foreground" />
+          <div className="p-2 rounded-full bg-primary/10">
+            <Icon size={20} className="text-primary" />
           </div>
         )}
       </div>

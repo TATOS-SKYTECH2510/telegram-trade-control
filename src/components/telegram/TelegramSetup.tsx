@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAppContext } from '@/context/AppContext';
 import { toast } from '@/hooks/use-toast';
-import { Bot } from 'lucide-react';
+import { Bot, CheckCircle } from 'lucide-react';
 
 const TelegramSetup: React.FC = () => {
   const { telegramSettings, updateTelegramSettings } = useAppContext();
@@ -56,7 +56,7 @@ const TelegramSetup: React.FC = () => {
   };
 
   return (
-    <Card className="animate-fade-in transition-all duration-300">
+    <Card className="transition-all duration-200 hover:shadow-md">
       <CardHeader className="space-y-1">
         <div className="flex items-center">
           <Bot className="h-5 w-5 mr-2 text-primary" />
@@ -77,6 +77,7 @@ const TelegramSetup: React.FC = () => {
             value={botToken}
             onChange={(e) => setBotToken(e.target.value)}
             disabled={telegramSettings.connected}
+            className="font-mono"
           />
           <p className="text-xs text-muted-foreground">
             Get this from @BotFather on Telegram
@@ -91,6 +92,7 @@ const TelegramSetup: React.FC = () => {
             value={chatId}
             onChange={(e) => setChatId(e.target.value)}
             disabled={telegramSettings.connected}
+            className="font-mono"
           />
           <p className="text-xs text-muted-foreground">
             The channel or group where signals are posted
@@ -99,14 +101,17 @@ const TelegramSetup: React.FC = () => {
         
         {telegramSettings.connected ? (
           <div className="space-y-4">
-            <div className="p-3 bg-success/10 border border-success/20 rounded-md text-sm">
-              <p className="font-medium text-success">Successfully Connected</p>
-              <p className="text-xs text-muted-foreground mt-1">
+            <div className="p-4 bg-success/10 border border-success/20 rounded-md text-sm">
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2 text-success" />
+                <p className="font-medium text-success">Successfully Connected</p>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
                 Last synced: {telegramSettings.lastSyncTime?.toLocaleString() || 'Never'}
               </p>
             </div>
             
-            <Button variant="destructive" onClick={handleDisconnect}>
+            <Button variant="destructive" className="w-full" onClick={handleDisconnect}>
               Disconnect
             </Button>
           </div>

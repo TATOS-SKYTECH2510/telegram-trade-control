@@ -49,39 +49,39 @@ const TradeList: React.FC<TradeListProps> = ({
     const isPositive = profit > 0;
     
     return (
-      <span className={isPositive ? 'trade-positive' : 'trade-negative'}>
+      <span className={isPositive ? 'text-success font-medium' : 'text-destructive font-medium'}>
         {isPositive ? '+' : ''}{formattedProfit}
       </span>
     );
   };
 
   return (
-    <Card className={cn("transition-all duration-300 h-full", className)}>
-      <CardHeader className="pb-3">
+    <Card className={cn("h-full transition-all duration-200 hover:shadow-md", className)}>
+      <CardHeader className="pb-2">
         <CardTitle className="text-lg font-medium">{title}</CardTitle>
       </CardHeader>
       
-      <CardContent className="px-0">
+      <CardContent className="px-0 pt-2">
         {trades.length === 0 ? (
-          <div className="text-center py-8 text-muted-foreground text-sm">
+          <div className="flex items-center justify-center py-12 text-muted-foreground text-sm">
             {emptyMessage}
           </div>
         ) : (
-          <div className="space-y-0 overflow-hidden">
+          <div className="space-y-0 overflow-hidden rounded-md">
             {trades.map((trade, index) => (
               <div 
                 key={trade.id}
                 className={cn(
                   "flex items-center justify-between py-3 px-6 transition-colors",
                   index % 2 === 0 ? "bg-secondary/30" : "bg-transparent",
-                  "hover:bg-secondary/50 transition-colors duration-150"
+                  "hover:bg-secondary/60 transition-colors duration-150"
                 )}
               >
                 <div className="flex flex-col">
                   <div className="flex items-center">
                     <span className={cn(
                       "inline-block w-2 h-2 rounded-full mr-2",
-                      trade.direction === 'BUY' ? "bg-profit" : "bg-loss"
+                      trade.direction === 'BUY' ? "bg-success" : "bg-destructive"
                     )} />
                     <span className="font-medium">{trade.pair}</span>
                     <span className="text-xs ml-2 text-muted-foreground">
